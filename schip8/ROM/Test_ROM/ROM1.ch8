@@ -1,0 +1,37 @@
+; Effacer l'écran
+00E0         ; Effacer l'écran (Clear screen)
+
+; Charger les sprites dans la mémoire
+A200         ; Charger l'adresse de "H" (0x200)
+D000 0055    ; Dessiner "H"
+
+A205         ; Charger l'adresse de "E" (0x205)
+D000 0055    ; Dessiner "E"
+
+A20A         ; Charger l'adresse de "L" (0x20A)
+D000 0055    ; Dessiner "L"
+
+A20F         ; Charger l'adresse de "L" (0x20F)
+D000 0055    ; Dessiner "L"
+
+A214         ; Charger l'adresse de "O" (0x214)
+D000 0055    ; Dessiner "O"
+
+; Espacer les lettres (par exemple, avancer de 10 pixels)
+A219         ; Charger l'adresse de "W" (0x219)
+D000 0055    ; Dessiner "W"
+
+A21E         ; Charger l'adresse de "O" (0x21E)
+D000 0055    ; Dessiner "O"
+
+A223         ; Charger l'adresse de "R" (0x223)
+D000 0055    ; Dessiner "R"
+
+A228         ; Charger l'adresse de "L" (0x228)
+D000 0055    ; Dessiner "L"
+
+A22D         ; Charger l'adresse de "D" (0x22D)
+D000 0055    ; Dessiner "D"
+
+; Boucle infinie pour maintenir l'affichage
+0000         ; Fin du programme (halt)

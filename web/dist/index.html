@@ -1,0 +1,113 @@
+<!doctypehtml>
+<html lang=en-us>
+    <head>
+        <meta charset=utf-8>
+        <meta content="text/html; charset=utf-8" http-equiv=Content-Type>
+        <title>WASM CHIP-8 Emulator</title>
+        <meta content="Dominik Rys" name=author>
+        <meta content="CHIP-8 Emulator written in C++ and compiled into WebAssembly" name=description>
+        <link href=main.css rel=stylesheet>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel=stylesheet>
+        <script async src=main.js></script>
+    </head>
+    <body>
+        <h1>WASM CHIP-8 Emulator</h1>
+        <p>A CHIP-8 emulator written in C++17 and compiled into WebAssembly.</p>
+        <p>Select a ROM from the dropdown and press 'START' to play!</p>
+        <figure id=spinner style=overflow:visible>
+            <div class=spinner></div>
+        </figure>
+        <div class=emscripten id=status>Downloading...</div>
+        <div class=emscripten>
+            <progress hidden id=progress max=100 value=0></progress>
+        </div>
+        <div class=emscripten_border>
+            <canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
+        </div>
+        <div class=emscripten id=menu>
+            <select id=rom-dropdown>
+                <option>SELECT ROM</option>
+                <option value='{"name": "games/Astro Dodge [Revival Studios, 2008].ch8","cyclesPerFrame":15}'>ASTRO DODGE</option>
+                <option value='{"name": "games/Blinky [Hans Christian Egeberg, 1991].ch8","cyclesPerFrame":40}'>BLINKY (PAC-MAN)</option>
+                <option value='{"name": "games/Breakout (Brix hack) [David Winter, 1997].ch8","cyclesPerFrame":10}'>BREAKOUT</option>
+                <option value='{"name": "games/Connect 4 [David Winter].ch8","cyclesPerFrame":1}'>CONNECT 4</option>
+                <option value='{"name": "games/Filter.ch8","cyclesPerFrame":10}'>FILTER</option>
+                <option value='{"name": "games/Space Invaders [David Winter].ch8","cyclesPerFrame":10}'>SPACE INVADERS</option>
+                <option value='{"name": "demos/Trip8 Demo (2008) [Revival Studios].ch8","cyclesPerFrame":40}'>TRIP8 (DEMO)</option>
+                <option value='{"name": "games/Kaleidoscope [Joseph Weisbecker, 1978].ch8","cyclesPerFrame":10}'>KALEIDOSCOPE</option>
+                <option value='{"name": "games/Lunar Lander (Udo Pernisz, 1979).ch8","cyclesPerFrame":3}'>LUNAR LANDER</option>
+                <option value='{"name": "games/Pong (1 player).ch8","cyclesPerFrame":10}'>PONG</option>
+                <option value='{"name": "games/Pong [Paul Vervalin, 1990].ch8","cyclesPerFrame":10}'>PONG (2-PLAYER)</option>
+                <option value='{"name": "games/Tetris [Fran Dachille, 1991].ch8","cyclesPerFrame":10}'>TETRIS</option>
+            </select>
+            <button disabled id=start-stop-button type=button>START</button>
+        </div>
+        <h4>Controls</h4>
+        <div id=keyboard>
+            <table class="keyboard-element tg">
+                <caption>Keyboard</caption>
+                <thead>
+                    <tr>
+                        <th class=tg-il3a>1</th>
+                        <th class=tg-il3a>2</th>
+                        <th class=tg-il3a>3</th>
+                        <th class=tg-il3a>4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class=tg-il3a>Q</td>
+                        <td class=tg-il3a>W</td>
+                        <td class=tg-il3a>E</td>
+                        <td class=tg-il3a>R</td>
+                    </tr>
+                    <tr>
+                        <td class=tg-il3a>A</td>
+                        <td class=tg-il3a>S</td>
+                        <td class=tg-il3a>D</td>
+                        <td class=tg-il3a>F</td>
+                    </tr>
+                    <tr>
+                        <td class=tg-il3a>Z</td>
+                        <td class=tg-il3a>X</td>
+                        <td class=tg-il3a>C</td>
+                        <td class=tg-il3a>V</td>
+                    </tr>
+                </tbody>
+            </table>
+            <span class=keyboard-element id=arrow>→</span>
+            <table class="keyboard-element tg">
+                <caption>CHIP-8</caption>
+                <thead>
+                    <tr>
+                        <th class=tg-il3a>1</th>
+                        <th class=tg-il3a>2</th>
+                        <th class=tg-il3a>3</th>
+                        <th class=tg-il3a>C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class=tg-il3a>4</td>
+                        <td class=tg-il3a>5</td>
+                        <td class=tg-il3a>6</td>
+                        <td class=tg-il3a>D</td>
+                    </tr>
+                    <tr>
+                        <td class=tg-il3a>7</td>
+                        <td class=tg-il3a>8</td>
+                        <td class=tg-il3a>9</td>
+                        <td class=tg-il3a>E</td>
+                    </tr>
+                    <tr>
+                        <td class=tg-il3a>A</td>
+                        <td class=tg-il3a>0</td>
+                        <td class=tg-il3a>B</td>
+                        <td class=tg-il3a>F</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script async src=chip8.js></script>
+    </body>
+</html>

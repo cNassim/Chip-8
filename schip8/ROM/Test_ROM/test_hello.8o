@@ -1,0 +1,45 @@
+# CHIP-8 HELLO WORLD ROM
+# This program will display "HELLO WORLD" on the CHIP-8 screen
+# using macros to simplify the drawing process.
+
+:macro show X address {
+  v0 := X           ; Load the register v0 with value X (which will be used to reference the sprite)
+  i := address      ; Load the I register with the sprite address
+  draw_sprite v0 v1 15  ; Draw the sprite stored at the I register address
+}
+
+: main
+  clear               ; Clear the screen
+
+  v1 := 1             ; Set v1 to 1 (used to indicate the first row)
+
+  ; Draw the letters of "HELLO WORLD"
+  show 8  hello-0-0   ; Draw H
+  show 16 hello-1-0   ; Draw E
+  show 24 hello-2-0   ; Draw L
+  show 32 hello-3-0   ; Draw L
+  show 40 hello-4-0   ; Draw O
+  show 48 hello-5-0   ; Space between "HELLO" and "WORLD"
+
+  show 56 hello-6-0   ; Draw W
+  show 64 hello-7-0   ; Draw O
+  show 72 hello-8-0   ; Draw R
+  show 80 hello-9-0   ; Draw L
+  show 88 hello-10-0  ; Draw D
+
+  loop again          ; Loop to keep the screen active
+
+; Segment for data (the sprite data for each letter)
+:segment data
+hello-0-0:   0x1F 0x11 0x1F 0x11 0x11  ; H
+hello-1-0:   0x1F 0x10 0x1E 0x10 0x1F  ; E
+hello-2-0:   0x1F 0x01 0x1F 0x01 0x1F  ; L
+hello-3-0:   0x1F 0x01 0x1F 0x01 0x1F  ; L
+hello-4-0:   0x1F 0x11 0x1F 0x11 0x1F  ; O
+hello-5-0:   0x00 0x00 0x00 0x00 0x00  ; Space between "HELLO" and "WORLD"
+hello-6-0:   0x11 0x11 0x15 0x15 0x19  ; W
+hello-7-0:   0x1F 0x11 0x1F 0x10 0x1F  ; O
+hello-8-0:   0x1F 0x11 0x1F 0x12 0x11  ; R
+hello-9-0:   0x1F 0x01 0x01 0x01 0x1F  ; L
+hello-10-0:  0x1F 0x11 0x11 0x11 0x1F  ; D
+
